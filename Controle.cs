@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
@@ -16,53 +13,87 @@ namespace WindowsFormsApp2
         public static StreamWriter escritor3;
         public static StreamReader leitor;
         public static int contador;
-        public static Produto[] vetprod = new Produto[1000];
+        public static List<Produto> vetprod;
         public static double Saldo;
 
 
         public static void carrega_dados()
         {
-            leitor = new StreamReader("Estoque.txt", true);
-
-            string[] aux;//Vetor auxiliar do Split.
-            string linha,nomarq="Estoque.txt";//Ler as linhas do arquivo. IMPORTANTE!
-            int i = 0, codigo=0;
-            double preco=0;
-            int quant=0;
-            string nome=null;
-            string categoria=null;
-
-            if (File.Exists(nomarq))
+            try 
             {
-                while (!leitor.EndOfStream)
-                {//Lê e Grava no vetor de acordo com atributo da classe e a ordem dos argumentos
-                    try
-                    {
-                        linha = leitor.ReadLine();
-                        aux = linha.Split(';');
-                        codigo = int.Parse(aux[0]);
-                        categoria = aux[1];
-                        nome = aux[2];
-                        quant = int.Parse(aux[3]);
-                        preco = double.Parse(aux[4]);
-                    }
-                    catch (System.FormatException)
-                    {
-                        MessageBox.Show("Erro na leitura do Arquivo");
-                    }
+                leitor = new StreamReader("Estoque.txt", true);
 
-                    vetprod[i] = new Produto(preco, codigo, quant, categoria, nome);
+                string[] aux;//Vetor auxiliar do Split.
+                string linha, nomarq = "Estoque.txt";//Ler as linhas do arquivo. IMPORTANTE!
+                int i = 0, codigo = 0;
+                double preco = 0;
+                int quant = 0;
+                string nome = null;
+                string categoria = null;
 
-                    contador = i++;
+                if (File.Exists(nomarq))
+                {
+                    while (!leitor.EndOfStream)
+                    {//Lê e Grava no vetor de acordo com atributo da classe e a ordem dos argumentos
+                        try
+                        {
+                            linha = leitor.ReadLine();
+                            aux = linha.Split(';');
+                            codigo = int.Parse(aux[0]);
+                            categoria = aux[1];
+                            nome = aux[2];
+                            quant = int.Parse(aux[3]);
+                            preco = double.Parse(aux[4]);
+                        }
+                        catch (System.FormatException)
+                        {
+                            MessageBox.Show("Erro na leitura do Arquivo");
+                        }
+
+                        vetprod.Add ( new Produto(preco, codigo, quant, categoria, nome));
+
+                        contador = i++;
+                    }
                 }
+
+                else { File.Create(nomarq); }
+
+                leitor.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Estamos criando uma nova base de estoque");
+                new StreamWriter("Estoque.txt");
+
+                leitor = new StreamReader("Estoque.txt", true);
+
             }
 
-            else { File.Create(nomarq); }
+            
+
            
-            leitor.Close();
+
+            StreamReader arq2;
+
+            try
+            {
+                
+                arq2 = new StreamReader("Saldo.txt");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Estamos carregando o saldo atualizado");
+
+                IDisposable disposable = new StreamWriter("Saldo.txt");
+                disposable.Dispose();
+
+                new StreamWriter("Saldo.txt");
 
 
-            StreamReader arq2 = new StreamReader("Saldo.txt");
+                 arq2 = new StreamReader("Saldo.txt");
+
+            }
+
 
             string linha2;
 

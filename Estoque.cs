@@ -45,13 +45,22 @@ namespace WindowsFormsApp2
 
         private void Estoque_Load(object sender, EventArgs e)
         {
+
             Produto p;
-            l.Items.Clear();
-            for (int i = 0; i <= Controle.contador; i++)
+
+            if (Controle.vetprod != null) 
             {
-                p = (Produto)Controle.vetprod[i];
-                l.Items.Add("Codigo: " + p.cod + "; Categoria: " + p.categoria + ";  Nome do Produto: " + p.nome + ";  Quantidade: " + p.qtd + "; Preço: R$" + p.preco + ";");
+                l.Items.Clear();
+                for (int i = 0; i <= Controle.contador; i++)
+                {
+                    p = (Produto)Controle.vetprod[i];
+                    l.Items.Add("Codigo: " + p.cod + "; Categoria: " + p.categoria + ";  Nome do Produto: " + p.nome + ";  Quantidade: " + p.qtd + "; Preço: R$" + p.preco + ";");
+                }
             }
+            else
+              MessageBox.Show("Não ha produtos cadastrados");
+
+           
 
 
             //label7.Text = "código-cat-nome-quant-preço";

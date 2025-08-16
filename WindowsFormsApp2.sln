@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28902.138
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp2", "WindowsFormsApp2.csproj", "{FDA6A233-889E-42B0-A9C0-0B8AC1E00A48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Tfi.Api", "src\01-Api\Supermarket.Tfi.Api\Supermarket.Tfi.Api.csproj", "{41AA9775-5413-4BC1-8E44-E4CCD53243E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Api", "01-Api", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{FDA6A233-889E-42B0-A9C0-0B8AC1E00A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDA6A233-889E-42B0-A9C0-0B8AC1E00A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDA6A233-889E-42B0-A9C0-0B8AC1E00A48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41AA9775-5413-4BC1-8E44-E4CCD53243E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41AA9775-5413-4BC1-8E44-E4CCD53243E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41AA9775-5413-4BC1-8E44-E4CCD53243E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41AA9775-5413-4BC1-8E44-E4CCD53243E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41AA9775-5413-4BC1-8E44-E4CCD53243E9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88E1369B-A052-4812-B362-A0E2592FAFE2}
